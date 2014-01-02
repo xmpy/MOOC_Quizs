@@ -149,7 +149,7 @@ class PLATestCase(unittest.TestCase):
 		correct_per = 0
 
 		for i in xrange(100):
-			weight,count = run_pocket_pla(train_arr)
+			weight,count = run_pocket_pla(train_arr，100)
 			correct_arr,incorrect_arr = split_correct_incorrect(test_arr,weight)
 			correct_per += float(correct_arr.shape[0]) / test_arr.shape[0]
 		print correct_per/100
@@ -185,7 +185,6 @@ if __name__ == '__main__':
 	print "\n"
 
 	### For Question 18
-	### 2000 times spent too much, so I only repeat 100times
 	train_arr = np.loadtxt('hw1_18_train.dat')
 	test_arr = np.loadtxt('hw1_18_test.dat')
 
@@ -193,18 +192,18 @@ if __name__ == '__main__':
 	test_arr = np.hstack((cols_1, test_arr))
 	incorrect_per = 0
 	
-	for i in xrange(100):
+	for i in xrange(2000):
 		weight,count = run_pocket_pla(train_arr,50)
 		correct_arr,incorrect_arr = split_correct_incorrect(test_arr,weight)
 		incorrect_per += 1 - float(correct_arr.shape[0]) / test_arr.shape[0]
 	print "Answer for Question 18"
-	print "Average Error Rate:",incorrect_per/100
+	print "Average Error Rate:",incorrect_per/2000
 	print "\n"
 
-	for i in xrange(100):
+	for i in xrange(2000):
 		weight,count = run_pocket_pla(train_arr,100)
 		correct_arr,incorrect_arr = split_correct_incorrect(test_arr,weight)
 		incorrect_per += 1 - float(correct_arr.shape[0]) / test_arr.shape[0]
 	print "Answer for Question 20"
-	print "Average Error Rate:",incorrect_per/100
+	print "Average Error Rate:",incorrect_per/2000
 	print "\n"
